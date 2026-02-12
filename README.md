@@ -71,7 +71,7 @@ Test SDF Network ; September 2015
 
 Freighter wallet connected successfully and public key displayed.
 
-![Wallet Connected](public/screenshot/wallet-connected.png)
+![Wallet Connected](public/screenshots/wallet-connected.png)
 
 ------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ Freighter wallet connected successfully and public key displayed.
 
 XLM balance fetched from Horizon Testnet and displayed in the UI.
 
-![Balance Displayed](public/screenshot/balance-displayed.png)
+![Balance Displayed](public/screenshots/balance-displayed.png)
 
 ------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ XLM balance fetched from Horizon Testnet and displayed in the UI.
 
 User sends XLM and the transaction is signed via Freighter.
 
-![Transaction Success](public/screenshot/transaction-success.png)
+![Transaction Success](public/screenshots/transaction-success.png)
 
 ------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ User sends XLM and the transaction is signed via Freighter.
 Transaction hash is displayed and can be verified on Stellar Testnet
 Explorer.
 
-![Exploere Verification](public/screenshot/explorer-proof.png)
+![Exploere Verification](public/screenshots/explorer-proof.png)
 
 ------------------------------------------------------------------------
 
