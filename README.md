@@ -1,93 +1,110 @@
-# Stellar QuickPay – White Belt Submission
+# Stellar QuickPay -- Testnet XLM Payment dApp
 
-Stellar QuickPay is a simple Stellar Testnet dApp that demonstrates wallet integration, balance retrieval, and native XLM transactions using the Freighter wallet.
+Stellar QuickPay is a simple decentralized application (dApp) built on
+the Stellar Testnet.
 
-This project was built as part of the Stellar Journey to Mastery – White Belt level.
+This project demonstrates: - Wallet connection using Freighter -
+Fetching and displaying XLM balance - Sending native XLM transactions -
+Displaying transaction result and hash
 
----
+This project was built as part of the Stellar Journey to Mastery --
+White Belt level.
 
-## 🚀 Features
+------------------------------------------------------------------------
 
-- Connect Freighter Wallet (Testnet)
-- Display real-time XLM balance
-- Send native XLM payments
-- Freighter-based secure transaction signing
-- Horizon API transaction submission
-- Automatic balance refresh after successful payment
-- Transaction hash with Explorer link
+## 🚀 Project Description
 
----
+Stellar QuickPay allows users to:
 
-## 🧠 How It Works
+1.  Connect their Freighter wallet (Testnet).
+2.  View their current XLM balance.
+3.  Send XLM to another Stellar address.
+4.  View the transaction result and transaction hash after submission.
 
-1. The app connects to the Freighter wallet on Stellar Testnet.
-2. The sender account is fetched from Horizon to retrieve the latest sequence number.
-3. A payment transaction is built using Stellar SDK.
-4. The unsigned transaction is passed to Freighter for signing.
-5. The signed XDR is submitted to Horizon.
-6. On success, the transaction hash is displayed and the balance is refreshed.
+The application interacts directly with the Stellar Testnet via Horizon
+and uses Freighter for secure transaction signing.
 
-This ensures:
-- Correct sequence number handling
-- Proper network passphrase usage
-- Secure key management (handled by Freighter)
-- Real network interaction on Stellar Testnet
+------------------------------------------------------------------------
 
----
+## 🛠 Setup Instructions (Run Locally)
 
-## 🛠 Tech Stack
+### 1️⃣ Clone the Repository
 
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- @stellar/stellar-sdk
-- @stellar/freighter-api
-- Horizon REST API
+``` bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+```
 
----
+### 2️⃣ Install Dependencies
 
-## 🧪 Network
-
-This project runs on:
-
-**Stellar Testnet**  
-Network Passphrase: `Test SDF Network ; September 2015`
-
-
-## 🔗 Wallet Connected
-
-Freighter wallet connected successfully and XLM balance fetched from Horizon Testnet.
-![Wallet Connected](public/screenshots/wallet-connected.png)
-
-
-## 💸 Payment Form
-
-User enters destination address and XLM amount before signing.
-![Transaction Form](public/screenshots/transaction-form.png)
-
-## ✅ Successful Testnet Transaction
-
-Transaction signed via Freighter and submitted to Horizon. Transaction hash displayed for verification.
-![Transaction Success](pubic/screenshots/transaction-success.png)
-
-## ✅ Explorer Verification
-https://stellar.expert/explorer/testnet/tx/YOUR_HASH
-![Explorer Verification](public/screenshots/explorer-proof.png)
-
----
-
-## 📦 Installation
-
-### 1. Clone Repository
-```bash
-git clone <your-repo-url>
-cd stellar-quickpay
+``` bash
 npm install
+```
+
+### 3️⃣ Run Development Server
+
+``` bash
 npm run dev
+```
 
-Requirements
-Install Freighter Wallet
-Switch network to Testnet
-Fund your account via Stellar Testnet Faucet
+The app will run at:
 
----
+http://localhost:3000
+
+------------------------------------------------------------------------
+
+## 🔐 Requirements
+
+-   Install the **Freighter Wallet** browser extension.
+-   Switch Freighter to **Testnet**.
+-   Fund your testnet wallet using the Stellar Testnet Faucet.
+
+Network used:
+
+Test SDF Network ; September 2015
+
+------------------------------------------------------------------------
+
+## 📸 Screenshots
+
+### 1️⃣ Wallet Connected State
+
+Freighter wallet connected successfully and public key displayed.
+
+![Wallet Connected](public/screenshot/wallet-connected.png)
+
+------------------------------------------------------------------------
+
+### 2️⃣ Balance Displayed
+
+XLM balance fetched from Horizon Testnet and displayed in the UI.
+
+![Balance Displayed](public/screenshot/balance-displayed.png)
+
+------------------------------------------------------------------------
+
+### 3️⃣ Successful Testnet Transaction
+
+User sends XLM and the transaction is signed via Freighter.
+
+![Transaction Success](public/screenshot/transaction-success.png)
+
+------------------------------------------------------------------------
+
+### 4️⃣ Explorer page proof
+
+Transaction hash is displayed and can be verified on Stellar Testnet
+Explorer.
+
+![Exploere Verification](public/screenshot/explorer-proof.png)
+
+------------------------------------------------------------------------
+
+## 🧠 What This Project Demonstrates
+
+-   Wallet integration with Freighter
+-   Fetching account data from Horizon
+-   Building transactions using Stellar SDK
+-   Signing transactions securely via wallet
+-   Submitting signed XDR to Horizon
+-   Displaying success/failure feedback to the user
