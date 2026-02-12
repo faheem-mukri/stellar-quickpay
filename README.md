@@ -64,6 +64,11 @@ cd stellar-quickpay
 npm install
 npm run dev
 
+Requirements
+Install Freighter Wallet
+Switch network to Testnet
+Fund your account via Stellar Testnet Faucet
+
 
 ### 🔗 Wallet Connected
 
