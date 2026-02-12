@@ -79,7 +79,7 @@ Freighter wallet connected successfully and public key displayed.
 
 XLM balance fetched from Horizon Testnet and displayed in the UI.
 
-![Balance Displayed](public/screenshots/balance-displayed.png)
+![Balance Displayed](public/screenshots/transaction-form.png)
 
 ------------------------------------------------------------------------
 
