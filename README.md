@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stellar QuickPay – White Belt Submission
 
-## Getting Started
+Stellar QuickPay is a simple Stellar Testnet dApp that demonstrates wallet integration, balance retrieval, and native XLM transactions using the Freighter wallet.
 
-First, run the development server:
+This project was built as part of the Stellar Journey to Mastery – White Belt level.
 
+---
+
+## 🚀 Features
+
+- Connect Freighter Wallet (Testnet)
+- Display real-time XLM balance
+- Send native XLM payments
+- Freighter-based secure transaction signing
+- Horizon API transaction submission
+- Automatic balance refresh after successful payment
+- Transaction hash with Explorer link
+
+---
+
+## 🧠 How It Works
+
+1. The app connects to the Freighter wallet on Stellar Testnet.
+2. The sender account is fetched from Horizon to retrieve the latest sequence number.
+3. A payment transaction is built using Stellar SDK.
+4. The unsigned transaction is passed to Freighter for signing.
+5. The signed XDR is submitted to Horizon.
+6. On success, the transaction hash is displayed and the balance is refreshed.
+
+This ensures:
+- Correct sequence number handling
+- Proper network passphrase usage
+- Secure key management (handled by Freighter)
+- Real network interaction on Stellar Testnet
+
+---
+
+## 🛠 Tech Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- @stellar/stellar-sdk
+- @stellar/freighter-api
+- Horizon REST API
+
+---
+
+## 🧪 Network
+
+This project runs on:
+
+**Stellar Testnet**  
+Network Passphrase: `Test SDF Network ; September 2015`
+
+---
+
+## 📦 Installation
+
+### 1. Clone Repository
 ```bash
+git clone <your-repo-url>
+cd stellar-quickpay
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔗 Wallet Connected
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Freighter wallet connected successfully and XLM balance fetched from Horizon Testnet.
+![Wallet Connected](screenshots/wallet-connected.png)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### 💸 Payment Form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+User enters destination address and XLM amount before signing.
+![Transaction Form](screenshots/transaction-form.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ✅ Successful Testnet Transaction
 
-## Deploy on Vercel
+Transaction signed via Freighter and submitted to Horizon. Transaction hash displayed for verification.
+![Transaction Success](screenshots/transaction-success.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### ✅ Explorer Verification
+https://stellar.expert/explorer/testnet/tx/YOUR_HASH
+![Explorer Verification](screenshots/explorer-proof.png)
