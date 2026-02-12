@@ -69,23 +69,24 @@ Install Freighter Wallet
 Switch network to Testnet
 Fund your account via Stellar Testnet Faucet
 
+---
 
-### 🔗 Wallet Connected
+## 🔗 Wallet Connected
 
 Freighter wallet connected successfully and XLM balance fetched from Horizon Testnet.
 ![Wallet Connected](screenshots/wallet-connected.png)
 
 
-### 💸 Payment Form
+## 💸 Payment Form
 
 User enters destination address and XLM amount before signing.
 ![Transaction Form](screenshots/transaction-form.png)
 
-### ✅ Successful Testnet Transaction
+## ✅ Successful Testnet Transaction
 
 Transaction signed via Freighter and submitted to Horizon. Transaction hash displayed for verification.
 ![Transaction Success](screenshots/transaction-success.png)
 
-### ✅ Explorer Verification
+## ✅ Explorer Verification
 https://stellar.expert/explorer/testnet/tx/YOUR_HASH
 ![Explorer Verification](screenshots/explorer-proof.png)
