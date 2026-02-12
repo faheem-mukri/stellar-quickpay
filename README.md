@@ -53,23 +53,6 @@ This project runs on:
 **Stellar Testnet**  
 Network Passphrase: `Test SDF Network ; September 2015`
 
----
-
-## 📦 Installation
-
-### 1. Clone Repository
-```bash
-git clone <your-repo-url>
-cd stellar-quickpay
-npm install
-npm run dev
-
-Requirements
-Install Freighter Wallet
-Switch network to Testnet
-Fund your account via Stellar Testnet Faucet
-
----
 
 ## 🔗 Wallet Connected
 
@@ -90,3 +73,21 @@ Transaction signed via Freighter and submitted to Horizon. Transaction hash disp
 ## ✅ Explorer Verification
 https://stellar.expert/explorer/testnet/tx/YOUR_HASH
 ![Explorer Verification](screenshots/explorer-proof.png)
+
+---
+
+## 📦 Installation
+
+### 1. Clone Repository
+```bash
+git clone <your-repo-url>
+cd stellar-quickpay
+npm install
+npm run dev
+
+Requirements
+Install Freighter Wallet
+Switch network to Testnet
+Fund your account via Stellar Testnet Faucet
+
+---
