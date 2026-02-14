@@ -108,3 +108,12 @@ Explorer.
 -   Signing transactions securely via wallet
 -   Submitting signed XDR to Horizon
 -   Displaying success/failure feedback to the user
+
+
+## 🟡 Yellow Belt – Smart Contract Deployment
+
+Contract Address:
+CD3LLLCF2HT3WTUI552JWWZCBCRSQJNWB4HUHGK3W3DRAW4GYD4AB5T7
+
+Deployment Transaction:
+https://stellar.expert/explorer/testnet/tx/68aa4b01b89554a21581a579dcec5cd37a83680a7d94d48eeb32e7a7cbf6a6e3
