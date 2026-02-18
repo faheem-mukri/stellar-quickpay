@@ -5,15 +5,39 @@ import WalletButton from "@/components/WalletButton";
 import BalanceCard from "@/components/BalanceCard";
 import SendPayment from "@/components/SendPayment";
 import { getXlmBalance } from "@/lib/stellar";
+import EventPanel from "@/components/EventPanel";
+import { getTotal, getUserTotal } from "@/lib/contract";
+import TotalsCard from "@/components/TotalsCard";
+
 
 export default function Home() {
   const [publicKey, setPublicKey] = useState<string>("");
   const [balance, setBalance] = useState<string>("");
+  const [total, setTotal] = useState<bigint>(0n);
+  const [userTotal, setUserTotal] = useState<bigint>(0n);
 
   const fetchBalance = async (key: string) => {
     const bal = await getXlmBalance(key);
     setBalance(bal);
   };
+
+  const fetchTotals = async () => {
+    try {
+      const totalValue = await getTotal();
+      setTotal(totalValue);
+
+      if (publicKey) {
+        const userTotalValue = await getUserTotal(publicKey);
+        setUserTotal(userTotalValue);
+      }
+    } catch (err) {
+      console.error("Failed to fetch totals:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTotals();
+  }, []);
 
   useEffect(() => {
     if (publicKey) {
@@ -39,10 +63,12 @@ export default function Home() {
         {publicKey && (
           <>
             <BalanceCard balance={balance} />
+            <TotalsCard total={total} userTotal={userTotal} />
             <SendPayment 
               publicKey={publicKey} 
               onSuccess={() => fetchBalance(publicKey)}
             />
+            <EventPanel />
           </>
         )}
       </div>

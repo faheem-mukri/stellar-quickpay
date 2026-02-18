@@ -22,7 +22,7 @@ export const sendXlm = async (
   try {
     //fetch sender account details to get the latest sequence number from horizon
     const accountResponse = await fetch(
-      `https://horizon-testnet.stellar.org/accounts/${senderPublicKey}`
+      `${process.env.NEXT_PUBLIC_HORIZON}/accounts/${senderPublicKey}`
     );
 
     //if the account doesn't exist or there's an error, throw an exception to be caught below and return a failure response to the UI
@@ -68,7 +68,7 @@ export const sendXlm = async (
 
     // Submit the signed transaction XDR to Horizon. This will attempt to execute the transaction on the Stellar network. If the transaction is successful, Horizon will return a success response with the transaction hash.
     const submitResponse = await fetch(
-      "https://horizon-testnet.stellar.org/transactions",
+      `${process.env.NEXT_PUBLIC_HORIZON}/transactions`,
       {
         method: "POST",
         headers: {
@@ -93,6 +93,46 @@ export const sendXlm = async (
       );
     }
 
+    const waitForConfirmation = async (hash: string) => {
+      const horizonUrl = process.env.NEXT_PUBLIC_HORIZON!;
+
+      const maxAttempts = 20; // ~20 seconds
+      let attempts = 0;
+
+      while (attempts < maxAttempts) {
+        const res = await fetch(
+          `${horizonUrl}/transactions/${hash}`
+        );
+
+        if (res.ok) {
+          const data = await res.json();
+
+          if (data.successful) {
+            return { success: true };
+          } else {
+            return { success: false, error: "Transaction failed" };
+          }
+        }
+
+        // Wait 1 second
+        await new Promise((resolve) =>
+          setTimeout(resolve, 1000)
+        );
+
+        attempts++;
+      }
+
+      return { success: false, error: "Timeout waiting for confirmation" };
+    };
+
+    const confirmation = await waitForConfirmation(result.hash);
+
+    if (!confirmation.success) {
+      return {
+        success: false,
+        error: confirmation.error,
+      };
+    }
     // If we reach this point, the transaction was successful. We return a success response with the transaction hash to the UI, which can be used to link to a block explorer.
     return {
       success: true,
@@ -101,10 +141,17 @@ export const sendXlm = async (
   } 
     // Catch any errors that occur during the process (account loading, transaction building, signing, or submission) and return a failure response with the error message to the UI.
     catch (error: any) {
-      console.error("Transaction failed:", error);
-      return {
-        success: false,
-        error: error.message,
-      };
-    }
+  if (error.message === "USER_REJECTED") {
+    return { success: false, error: "User rejected transaction" };
+  }
+
+  if (error.message.includes("op_underfunded")) {
+    return { success: false, error: "Insufficient balance" };
+  }
+
+  return {
+    success: false,
+    error: error.message || "Network error",
+  };
+}
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { requestAccess, getAddress } from "@stellar/freighter-api";
 
 // =====================================================
@@ -8,15 +10,10 @@ import { requestAccess, getAddress } from "@stellar/freighter-api";
 // 2. If the user approves, get their public key (Stellar address) and return it to the caller
 // =====================================================
 
-export const connectWallet = async () => {
-  try {
-    // Always request access first to ensure we have permission to interact with the wallet and get the user's public key.
-    await requestAccess({ network: "TESTNET" });
+export const connectWallet = async (): Promise<string> => {
+  await requestAccess({ network: "TESTNET" });
 
-    const address = await getAddress();
-    return address.address;
-  } catch (error) {
-    console.error("Wallet connection error:", error);
-    throw error;
-  }
+  const { address } = await getAddress();
+
+  return address;
 };
