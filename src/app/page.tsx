@@ -1,77 +1,107 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useWallet } from "@/hooks/useWallet";
 import { useEffect, useState } from "react";
-import WalletButton from "@/components/WalletButton";
-import BalanceCard from "@/components/BalanceCard";
-import SendPayment from "@/components/SendPayment";
-import { getXlmBalance } from "@/lib/stellar";
-import EventPanel from "@/components/EventPanel";
-import { getTotal, getUserTotal } from "@/lib/contract";
-import TotalsCard from "@/components/TotalsCard";
 
-
-export default function Home() {
-  const [publicKey, setPublicKey] = useState<string>("");
-  const [balance, setBalance] = useState<string>("");
-  const [total, setTotal] = useState<bigint>(0n);
-  const [userTotal, setUserTotal] = useState<bigint>(0n);
-
-  const fetchBalance = async (key: string) => {
-    const bal = await getXlmBalance(key);
-    setBalance(bal);
-  };
-
-  const fetchTotals = async () => {
-    try {
-      const totalValue = await getTotal();
-      setTotal(totalValue);
-
-      if (publicKey) {
-        const userTotalValue = await getUserTotal(publicKey);
-        setUserTotal(userTotalValue);
-      }
-    } catch (err) {
-      console.error("Failed to fetch totals:", err);
-    }
-  };
+export default function Landing() {
+  const { connect, isConnected, isConnecting } = useWallet();
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    fetchTotals();
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (publicKey) {
-      fetchBalance(publicKey);
-    }
-  }, [publicKey]);
+    if (!mounted) return; // ← wait for sessionStorage to load
+    if (isConnected) router.push("/groups");
+  }, [isConnected, mounted]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
-        
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Stellar QuickPay
-          </h1>
-          <p className="text-gray-500 text-sm mt-2">
-            Send XLM instantly on Stellar Testnet
-          </p>
-        </div>
+    <div style={{
+      minHeight: "100vh",
+      background: "#0a0b0f",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "24px",
+      fontFamily: "'Syne', sans-serif",
+    }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');`}</style>
 
-        <WalletButton onConnect={setPublicKey} />
+      <div style={{
+        position: "fixed", top: "20%", left: "50%", transform: "translateX(-50%)",
+        width: 500, height: 500, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(0,82,255,0.07) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
 
-        {publicKey && (
-          <>
-            <BalanceCard balance={balance} />
-            <TotalsCard total={total} userTotal={userTotal} />
-            <SendPayment 
-              publicKey={publicKey} 
-              onSuccess={() => fetchBalance(publicKey)}
-            />
-            <EventPanel />
-          </>
-        )}
+      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 64 }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: 14,
+          background: "linear-gradient(135deg, #0052ff, #00c2ff)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 20, fontWeight: 800, color: "#fff",
+        }}>S</div>
+        <span style={{ fontSize: 22, fontWeight: 800, color: "#fff", letterSpacing: "-0.5px" }}>
+          Stellar<span style={{ color: "#0052ff" }}>Split</span>
+        </span>
       </div>
-    </main>
+
+      <div style={{ textAlign: "center", maxWidth: 480, marginBottom: 48 }}>
+        <h1 style={{
+          fontSize: 52, fontWeight: 800, color: "#ffffff",
+          letterSpacing: "-2px", lineHeight: 1.05, margin: 0, marginBottom: 20,
+        }}>
+          Split bills.<br />
+          <span style={{
+            background: "linear-gradient(135deg, #0052ff, #00c2ff)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+          }}>Settle on-chain.</span>
+        </h1>
+        <p style={{
+          fontFamily: "'DM Mono', monospace", fontSize: 14,
+          color: "#4b5563", lineHeight: 1.7, margin: 0,
+        }}>
+          Create groups, track shared expenses, and settle<br />
+          debts instantly with XLM on Stellar testnet.
+        </p>
+      </div>
+
+      <button
+        onClick={connect}
+        disabled={isConnecting}
+        style={{
+          background: isConnecting ? "#1a1d27" : "linear-gradient(135deg, #0052ff, #0066ff)",
+          border: "none", borderRadius: 14, padding: "16px 40px",
+          color: isConnecting ? "#4b5563" : "#fff",
+          fontSize: 16, fontWeight: 700, fontFamily: "'Syne', sans-serif",
+          cursor: isConnecting ? "not-allowed" : "pointer",
+          transition: "all 0.2s", marginBottom: 16,
+        }}
+      >
+        {isConnecting ? "Connecting..." : "Connect Freighter Wallet →"}
+      </button>
+
+      <p style={{
+        fontFamily: "'DM Mono', monospace", fontSize: 11,
+        color: "#2d3748", letterSpacing: "0.5px",
+      }}>
+        Stellar Testnet · Powered by Soroban
+      </p>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 64, flexWrap: "wrap", justifyContent: "center" }}>
+        {["Create groups", "Track expenses", "Settle with XLM", "On-chain proof"].map((f) => (
+          <div key={f} style={{
+            background: "#0d1117", border: "1px solid #1e2029",
+            borderRadius: 999, padding: "6px 16px",
+            fontFamily: "'DM Mono', monospace", fontSize: 11,
+            color: "#4b5563", letterSpacing: "0.5px",
+          }}>{f}</div>
+        ))}
+      </div>
+    </div>
   );
 }
