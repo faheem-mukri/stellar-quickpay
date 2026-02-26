@@ -139,6 +139,8 @@ export default function GroupsPage() {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 const fonts = `@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');`;
 
 const styles: Record<string, React.CSSProperties> = {

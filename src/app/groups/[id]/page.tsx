@@ -417,3 +417,5 @@ export default function GroupDetailPage() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";

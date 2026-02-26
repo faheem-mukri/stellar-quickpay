@@ -167,6 +167,8 @@ function SettleContent() {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 export default function SettlePage() {
   return (
     <Suspense fallback={<div style={{ background: "#0a0b0f", minHeight: "100vh" }} />}>

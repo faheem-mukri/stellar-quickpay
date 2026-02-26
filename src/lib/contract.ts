@@ -13,7 +13,7 @@ const CONTRACT_ID = process.env.NEXT_PUBLIC_CONTRACT_ID!;
 const RPC_URL = process.env.NEXT_PUBLIC_SOROBAN_RPC!;
 const NETWORK_PASSPHRASE = process.env.NEXT_PUBLIC_NETWORK_PASSPHRASE!;
 
-const server = new Server(RPC_URL);
+const server = new Server(RPC_URL, {allowHttp: true});
 
 // ── record_payment ──────────────────────────────────
 // Calls the contract to record a payment on-chain.

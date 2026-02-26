@@ -120,3 +120,5 @@ export default function NewGroupPage() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
