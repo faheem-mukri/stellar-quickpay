@@ -11,7 +11,7 @@ import { requestAccess, getAddress } from "@stellar/freighter-api";
 // =====================================================
 
 export const connectWallet = async (): Promise<string> => {
-  await requestAccess({ network: "TESTNET" });
+  await requestAccess();
 
   const { address } = await getAddress();
 
