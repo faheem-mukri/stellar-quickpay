@@ -122,7 +122,7 @@ export default function GroupDetailPage() {
           </div>
 
           {/* Stats row */}
-          <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
+          <div className="ss-stats-row" style={{ display: "flex", gap: 12, marginTop: 20 }}>
             {[
               { label: "Total Spent", value: `${totalSpent.toFixed(2)} XLM` },
               { label: "Members", value: group.members.length },

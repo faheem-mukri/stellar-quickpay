@@ -1,5 +1,6 @@
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 import "./globals.css";
+import "./responsive.css";
 
 export default function RootLayout({
   children,

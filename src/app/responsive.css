@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  background: #0a0b0f;
+  color: #ffffff;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Remove number input arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove autofill yellow */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0d1117 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0b0f; }
+::-webkit-scrollbar-thumb { background: #1e2029; border-radius: 3px; }
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+
+  /* Header */
+  .ss-header {
+    padding: 14px 16px !important;
+  }
+
+  /* Hide address pill on small screens */
+  .ss-header-address {
+    display: none !important;
+  }
+
+  .ss-header-disconnect {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* TotalsCard: 2 columns → 1 column */
+  .ss-totals-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats row: scroll horizontally instead of squishing */
+  .ss-stats-row {
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+  }
+
+  .ss-stats-row > div {
+    min-width: 90px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Expense form: stack description + amount vertically */
+  .ss-expense-row {
+    flex-direction: column !important;
+  }
+
+  /* Landing hero */
+  .ss-hero-title {
+    font-size: 38px !important;
+    letter-spacing: -1px !important;
+  }
+
+  /* Main content padding */
+  .ss-main {
+    padding: 20px 12px 60px !important;
+  }
+
+  /* Cards */
+  .ss-card {
+    padding: 16px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Settle page amount */
+  .ss-settle-amount {
+    font-size: 36px !important;
+  }
+
+  /* Tab buttons text */
+  .ss-tab {
+    font-size: 11px !important;
+    padding: 7px 4px !important;
+  }
+}
+
+/* ── Tablet ── */
+@media (max-width: 768px) {
+  .ss-main {
+    padding: 24px 16px 60px !important;
+  }
+}
