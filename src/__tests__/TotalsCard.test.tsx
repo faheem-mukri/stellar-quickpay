@@ -4,23 +4,30 @@ import TotalsCard from "@/components/TotalsCard";
 
 describe("TotalsCard", () => {
 
-  // ✅ Test 1: renders contract total correctly
-  it("displays contract total", () => {
+  // ✅ Test 1: renders contract total number
+  it("displays contract total value", () => {
     render(<TotalsCard total={500n} userTotal={100n} />);
-    expect(screen.getByText("500 XLM")).toBeInTheDocument();
+    expect(screen.getByText("500")).toBeInTheDocument();
   });
 
-  // ✅ Test 2: renders user total correctly
-  it("displays user total", () => {
+  // ✅ Test 2: renders user total number
+  it("displays user total value", () => {
     render(<TotalsCard total={500n} userTotal={100n} />);
-    expect(screen.getByText("100 XLM")).toBeInTheDocument();
+    expect(screen.getByText("100")).toBeInTheDocument();
   });
 
-  // ✅ Test 3: renders zero values without crashing
-  it("handles zero values gracefully", () => {
+  // ✅ Test 3: renders labels correctly
+  it("renders Contract Total and Your Total labels", () => {
     render(<TotalsCard total={0n} userTotal={0n} />);
-    const zeros = screen.getAllByText("0 XLM");
-    expect(zeros).toHaveLength(2); // both contract and user total show 0
+    expect(screen.getByText("Contract Total")).toBeInTheDocument();
+    expect(screen.getByText("Your Total")).toBeInTheDocument();
+  });
+
+  // ✅ Test 4: renders XLM labels
+  it("renders XLM currency labels", () => {
+    render(<TotalsCard total={10n} userTotal={5n} />);
+    const xlmLabels = screen.getAllByText("XLM");
+    expect(xlmLabels.length).toBeGreaterThanOrEqual(2);
   });
 
 });

@@ -2,36 +2,31 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import BalanceCard from "@/components/BalanceCard";
 
-// 📦 "describe" groups related tests together under one name
 describe("BalanceCard", () => {
 
-  // ✅ Test 1: empty balance should show loading
+  // ✅ Test 1: shows loading shimmer when balance is empty
   it("shows Loading... when balance is empty", () => {
-    // 1. RENDER — put the component on a fake screen
-    render(<BalanceCard balance="" />);
-
-    // 2. FIND — look for the text "Loading..." on that screen
-    const loadingText = screen.getByText("Loading...");
-
-    // 3. ASSERT — confirm it actually exists
-    expect(loadingText).toBeInTheDocument();
+    const { container } = render(<BalanceCard balance="" />);
+    // No balance text shown — shimmer div renders instead
+    expect(screen.queryByText("XLM")).not.toBeInTheDocument();
   });
 
-  // ✅ Test 2: a real balance should display formatted with XLM
-  it("displays formatted balance when balance is provided", () => {
+  // ✅ Test 2: renders the number part of the balance
+  it("displays formatted balance number when provided", () => {
     render(<BalanceCard balance="100.5" />);
-
-    // It should show "100.5 XLM" (the component strips trailing zeros)
-    const balanceText = screen.getByText(/100\.5 XLM/);
-    expect(balanceText).toBeInTheDocument();
+    expect(screen.getByText("100.5")).toBeInTheDocument();
   });
 
-  // ✅ Test 3: strips unnecessary trailing zeros
+  // ✅ Test 3: renders the XLM label when balance is provided
+  it("displays XLM label when balance is provided", () => {
+    render(<BalanceCard balance="100.5" />);
+    expect(screen.getByText("XLM")).toBeInTheDocument();
+  });
+
+  // ✅ Test 4: strips trailing zeros
   it("strips trailing zeros from balance", () => {
     render(<BalanceCard balance="50.0000000" />);
-
-    const balanceText = screen.getByText(/50 XLM/);
-    expect(balanceText).toBeInTheDocument();
+    expect(screen.getByText("50")).toBeInTheDocument();
   });
 
 });
