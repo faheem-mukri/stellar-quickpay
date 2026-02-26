@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { connectWallet } from "@/lib/wallet";
-import { useRouter } from "next/router";
 
 export function useWallet() {
-  const router = useRouter();
   const [publicKey, setPublicKey] = useState<string>("");
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -32,7 +30,6 @@ export function useWallet() {
   const disconnect = () => {
     setPublicKey("");
     sessionStorage.removeItem("stellarsplit:wallet");
-    router.push("/"); // Redirect to home on disconnect
   };
 
   // ✅ signTransaction needed for contract calls

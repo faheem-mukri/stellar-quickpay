@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 type Props = {
   address: string | null;
   isConnecting: boolean;
@@ -8,6 +10,13 @@ type Props = {
 };
 
 export function Header({ address, isConnecting, connect, disconnect }: Props) {
+  const router = useRouter();
+
+  const handleDisconnect = () => {
+    disconnect();
+    router.push("/"); // Redirect to home on disconnect
+  };
+  
   return (
     <header style={{
       display: "flex",
