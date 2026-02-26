@@ -17,16 +17,16 @@ A decentralized bill-splitting dApp built on the Stellar network. Create groups,
 ## Screenshots
 
 ### 12 Tests Passing
-![Test output showing 12 tests passing](./screenshots/tests.png)
+![Test output showing 12 tests passing](public/screenshots/tests.png)
 
 ### App — Groups Dashboard
-![Groups dashboard](./screenshots/groups.png)
+![Groups dashboard](public/screenshots/groups.png)
 
 ### App — Expense Splitting
-![Expense splitting](./screenshots/expenses.png)
+![Expense splitting](public/screenshots/expenses.png)
 
 ### App — Balances & Settle
-![Balances and settle](./screenshots/settle.png)
+![Balances and settle](public/screenshots/settle.png)
 
 ---
 
