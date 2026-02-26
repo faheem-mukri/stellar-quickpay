@@ -2,7 +2,7 @@ name: StellarSplit CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, green-belt]
   pull_request:
     branches: [main]
 
